@@ -171,7 +171,7 @@ ofstream cfgconfig;
             cout << "HEY! We found an update.. Do you want to update?" << " Y/N" << endl;
             cin >> answer;
 
-        if (answer == 'Y')
+        if (answer == 'Y', 'y', 'Yes', 'yes')
         {
            ofstream cfgconfig;
         cfgconfig.open ("version.cfg");
@@ -285,7 +285,7 @@ void start()
     cin >> zahl;
     if (zahl == 1)          //Bedingung für ausführung der Schleife 1, startet die Simulation
     {
-        system("start veloren-server-cli.exe RUST_LOG=Debug" ) ;
+        system("start veloren-server-cli.exe " ) ;
 
     }
     if (zahl == 2)          //Bedingung für ausführung der Schleife 2, beendet das Programm
