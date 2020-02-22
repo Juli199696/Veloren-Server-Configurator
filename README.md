@@ -11,12 +11,12 @@ When compiling is done just copy the released files into Veloren main folder and
 
 Setup the following variables:
 
----------------------
+
 Server Name:
 Server Description:
 Max Players:
 World Seed:
 Admins:
----------------------
+
 
 Please open issues if you get into trouble. 
