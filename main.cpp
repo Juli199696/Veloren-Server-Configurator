@@ -86,7 +86,7 @@ void NewsCheck()
     system("cls");
     SetMyCursor(0,27);
     cout<<"\nCheck for News!\n\n";
-    Sleep(1000);
+    Sleep(500);
 
     CURL *curl;
     FILE *fp;
@@ -133,7 +133,7 @@ ofstream cfgconfig;
      CURL *curl;
     FILE *fp;
     CURLcode res;
-    char *url = "http://gaming-ftw.de/server-configurator/version.cfg";
+    char *url = "http://gaming-ftw.de/veloren/server-configurator/version.cfg";
     char outfilename[FILENAME_MAX] = "version.cfg";
     curl = curl_easy_init();
     if (curl)
@@ -162,7 +162,7 @@ ofstream cfgconfig;
     if (versionold == versionneu)
     {
         cout << "You already got the newest version. :) " << versionold <<endl;
-        Sleep(2000);
+        Sleep(1000);
         checkupdates = 1;
     }
     else
@@ -260,9 +260,10 @@ void start()
     cout << "|                                                    |" << endl;
     cout << "|1. Start Server                                     |" << endl;
     cout << "|2. Exit                                             |" << endl;
-    cout << "|3. Settings                                         |" << endl;
+    cout << "|3. Server Setup                                     |" << endl;
     cout << "|4. Check for updates (DEV BRANCH)                   |" << endl;
     cout << "|____________________________________________________|" << endl;
+    cout << "                                                      " << endl;
     SetMyCursor(0,26);      //Text für untere Leiste
     {
         cout << "Server-configurator: V. "<< version << endl ;
@@ -284,8 +285,8 @@ void start()
     cin >> zahl;
     if (zahl == 1)          //Bedingung für ausführung der Schleife 1, startet die Simulation
     {
+        system("start veloren-server-cli.exe RUST_LOG=Debug" ) ;
 
-        system("cls");
     }
     if (zahl == 2)          //Bedingung für ausführung der Schleife 2, beendet das Programm
     {
@@ -294,25 +295,60 @@ void start()
 
     if (zahl == 3)          //Highscore
     {
+        string defaultconfig = "test";
+        string server_name;
+        string server_description;
+        string max_players;
+        string world_seed;
+        string admins;
         system("cls");
-        string configure;
-        ifstream settings ("settings.ron");
-        if (settings.is_open())
-        {
-            while ( getline (settings,configure) )
-            {
-                cout << configure << '\n';
-            }
+        cout << "Configuration:";
+
+        cout << endl << "Server name:";
+        getline(cin, server_name);
+        getline(cin, server_name);
+
+        cout << endl << "Server description:" ;
+        getline(cin, server_description);
+
+        cout << endl <<"Max players:";
+        getline(cin, max_players);
+
+        cout << endl << "World Seed:";
+        getline(cin, world_seed);
+
+        cout << endl << "Admins | Please type admins like |--> " << "\"admin1\"" << ", " << "\"admin2\"" << ", <--|...  :";
+        getline(cin, admins);
+
+
+        ofstream settings;
+        settings.open("settings.ron");
+        settings <<
+         "(" << '\n' <<
+         "gameserver_address: " << "\"" << "0.0.0.0:14004" << "\"" << "," << '\n' <<
+
+         "metrics_address: " << "\"" << "0.0.0.0:14005" << "\"" << "," << '\n' <<
+
+         "server_name: " << "\"" << server_name << "\"" << "," << '\n' <<
+
+         "server_description: " << "\""  << server_description << "\"" << "," << '\n' <<
+
+         "max_players: " << max_players << "," << '\n' <<
+
+         "world_seed: "  << world_seed << "," << '\n' <<
+
+         "start_time: 32400," << '\n' <<
+
+         "admins: [" << '\n' << admins << '\n' << "]," << '\n' <<
+
+         "map_file: None," << '\n' <<
+
+         ")" ;
             settings.close();
-            getch();
             system("cls");
             start();
         }
-        else cout << "ERROR NO CONFIG FILE!";
-        Sleep(3000);
-        start();
 
-    }
     if (zahl == 4)          //Updates the program.
         checkupdates=0;
         start();
