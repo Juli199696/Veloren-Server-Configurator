@@ -14,9 +14,13 @@ into Veloren main folder and start the "Veloren-server-configurator.exe".
 Setup the following variables:
 
 Server Name:
+
 Server Description:
+
 Max Players:
+
 World Seed:
+
 Admins:
 
 
