@@ -1,5 +1,5 @@
 # Veloren-Server-Configurator
- Configurator for Veloren  Servers
+ Configurator for Veloren  Servers created in C++
 
 How to compile:
 
