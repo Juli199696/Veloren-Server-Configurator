@@ -50,7 +50,7 @@ Changelog 15.10.2017:
 #include <string>
 #include <curl/curl.h>
 #include <cstdlib>
-float version = 0.1;
+float version = 0.2;
 
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
@@ -168,10 +168,10 @@ ofstream cfgconfig;
     else
     {
         char answer;
-            cout << "HEY! We found an update.. Do you want to update?" << " Y/N" << endl;
+            cout << "HEY! We found an update.. Do you want to update?" << " 1 = Yes, 2 = No" << endl;
             cin >> answer;
 
-        if (answer == 'Y', 'y', 'Yes', 'yes')
+        if (answer == '1')
         {
            ofstream cfgconfig;
         cfgconfig.open ("version.cfg");
