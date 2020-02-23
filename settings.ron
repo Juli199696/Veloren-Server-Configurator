@@ -1,13 +1,13 @@
 (
-gameserver_address: "0.0.0.0:14004",
+gameserver_address: "123",
 metrics_address: "0.0.0.0:14005",
-server_name: "TEST",
-server_description: "TEST",
+server_name: "Test",
+server_description: "test",
 max_players: 123,
 world_seed: 123,
 start_time: 32400,
 admins: [
-"juli199696",
+"admin",
 ],
-map_file: None,
+map_file:mymap,
 )

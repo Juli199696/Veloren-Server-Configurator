@@ -6,7 +6,7 @@
 #include <string>
 #include <curl/curl.h>
 #include <cstdlib>
-float version = 0.3;
+float version = 0.31;
 
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
@@ -253,31 +253,44 @@ void start()
         string max_players;
         string world_seed;
         string admins;
+        string server_address;
+        string map_file = "none";
         system("cls");
+        cout << "=====================================================" << endl;
         cout << "Configuration:";
-
+        cout << endl << "=====================================================";
         cout << endl << "Server name:";
         getline(cin, server_name);
         getline(cin, server_name);
-
+        cout  << "=====================================================";
+        cout << endl << "Server IP:Port:" ;
+        getline(cin, server_address);
+        cout  << "=====================================================";
         cout << endl << "Server description:" ;
         getline(cin, server_description);
-
+        cout  << "=====================================================";
         cout << endl <<"Max players:";
         getline(cin, max_players);
-
+        cout  << "=====================================================";
         cout << endl << "World Seed:";
         getline(cin, world_seed);
-
-        cout << endl << "Admins | Please type admins like |--> " << "\"admin1\"" << ", " << "\"admin2\"" << ", <--|...  :";
+        cout  << "=====================================================";
+        cout << endl << "Admins | Please type admins like |--> " << "\"admin1\"" << ", " << "\"admin2\"" << "<--|...  :" << endl;
         getline(cin, admins);
-
-
-        ofstream settings;
+        cout << endl << "=====================================================";
+        cout << endl << "Do you want to use own map file? 1 = Yes, 2 = No:";
+        int usemap = 2;
+        cin >> usemap;
+        if (usemap == 1)
+        {
+            getline(cin, map_file);
+            getline(cin, map_file);
+        cout  << "=====================================================";
+ofstream settings;
         settings.open("settings.ron");
         settings <<
          "(" << '\n' <<
-         "gameserver_address: " << "\"" << "0.0.0.0:14004" << "\"" << "," << '\n' <<
+         "gameserver_address: " << "\"" << server_address << "\"" << "," << '\n' <<
 
          "metrics_address: " << "\"" << "0.0.0.0:14005" << "\"" << "," << '\n' <<
 
@@ -291,16 +304,51 @@ void start()
 
          "start_time: 32400," << '\n' <<
 
-         "admins: [" << '\n' << admins << '\n' << "]," << '\n' <<
+         "admins: [" << '\n' << admins << "," << '\n' << "]," << '\n' <<
 
-         "map_file: None," << '\n' <<
+         "map_file:" << map_file<< "," << '\n' <<
 
          ")" ;
-            settings.close();
+         settings.close();
+         cout << endl << "Server configuration saved! You can now start the server.";
+            getch();
             system("cls");
             start();
         }
+        else
+        {
 
+
+        ofstream settings;
+        settings.open("settings.ron");
+        settings <<
+         "(" << '\n' <<
+         "gameserver_address: " << "\"" << server_address << "\"" << "," << '\n' <<
+
+         "metrics_address: " << "\"" << "0.0.0.0:14005" << "\"" << "," << '\n' <<
+
+         "server_name: " << "\"" << server_name << "\"" << "," << '\n' <<
+
+         "server_description: " << "\""  << server_description << "\"" << "," << '\n' <<
+
+         "max_players: " << max_players << "," << '\n' <<
+
+         "world_seed: "  << world_seed << "," << '\n' <<
+
+         "start_time: 32400," << '\n' <<
+
+         "admins: [" << '\n' << admins << "," << '\n' << "]," << '\n' <<
+
+         "map_file:" << "none" << "," << '\n' <<
+
+         ")" ;
+            settings.close();
+            cout << endl << "Server configuration saved! You can now start the server.";
+            getch();
+            system("cls");
+            start();
+        }
+    }
     if (zahl == 3)          //Updates the program.
         checkupdates=0;
         start();
