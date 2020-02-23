@@ -6,7 +6,7 @@
 #include <string>
 #include <curl/curl.h>
 #include <cstdlib>
-float version = 0.311;
+float version = 0.312;
 
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
@@ -136,10 +136,10 @@ ofstream cfgconfig;
         cout << "Current version: " << versionold << endl;
         cout << "New update!" << endl;
         cout << "New version: " << versionneu << endl;
-        Sleep(2000);
+        Sleep(1000);
 
         cout << "Updating!" << endl;
-        Sleep(3000);
+        Sleep(1000);
          CURL *curl;
     FILE *fp;
     CURLcode res;
@@ -156,7 +156,7 @@ ofstream cfgconfig;
         curl_easy_cleanup(curl);
         fclose(fp);
             cout << "Update complete! :)"<< endl;
-            Sleep(3000);
+            Sleep(1000);
             rename("./Veloren-server-configurator.exe","./Veloren-server-configurator_old.exe");
             rename("./Veloren-server-configuratornew.exe","./Veloren-server-configurator.exe");
 
@@ -277,8 +277,8 @@ void start()
         cout  << "=====================================================";
         cout << endl << "Admins | Please type admins like |--> " << "\"admin1\"" << ", " << "\"admin2\"" << "<--|...  :" << endl;
         getline(cin, admins);
-        cout << endl << "=====================================================";
-        cout << endl << "Do you want to use own map file? 1 = Yes, 2 = No:";
+        cout << "=====================================================";
+        cout << endl << "Do you want to use own map file? 1 = Yes, 2 = No:" << endl ;
         int usemap = 2;
         cin >> usemap;
         if (usemap == 1)
@@ -311,6 +311,7 @@ ofstream settings;
          ")" ;
          settings.close();
          cout << endl << "Server configuration saved! You can now start the server.";
+         cout << endl << "Press (enter) to continue.";
             getch();
             system("cls");
             start();
@@ -344,6 +345,7 @@ ofstream settings;
          ")" ;
             settings.close();
             cout << endl << "Server configuration saved! You can now start the server.";
+            cout << endl << "Press (enter) to continue.";
             getch();
             system("cls");
             start();
