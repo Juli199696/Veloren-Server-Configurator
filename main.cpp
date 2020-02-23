@@ -6,7 +6,7 @@
 #include <string>
 #include <curl/curl.h>
 #include <cstdlib>
-float version = 0.31;
+float version = 0.311;
 
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
@@ -339,7 +339,7 @@ ofstream settings;
 
          "admins: [" << '\n' << admins << "," << '\n' << "]," << '\n' <<
 
-         "map_file:" << "none" << "," << '\n' <<
+         "map_file:" << "None" << "," << '\n' <<
 
          ")" ;
             settings.close();
