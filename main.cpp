@@ -1,48 +1,4 @@
-/* 06.11.2017 Ant Simulation version : 2.1 Dev  Autor: Julian Märtin
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-==============================================================================================================================
-Allgemeine Programm Infos wie Changelog und vorhandene Funktionen.
-==============================================================================================================================
-
-New functions     | +
-Changed functions | #
-Deleted functions | -
-
-Vorhandene Funktionen:
--------------------------------------------------------------------------------------------------------------------------------
-
-Changelog 06.11.2017:
-+Updater check version of AntSim.
-
-Changelog 15.10.2017:
-
-*Inital Commit on Github.
-
-+ UPDATER READY TO USE!!!
-
-# General code cleanup.
-
-
-==============================================================================================================================*/
 #include <iostream>
 #include <conio.h>   // für getch()
 #include <windows.h>
@@ -50,7 +6,7 @@ Changelog 15.10.2017:
 #include <string>
 #include <curl/curl.h>
 #include <cstdlib>
-float version = 0.2;
+float version = 0.3;
 
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
@@ -62,7 +18,7 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
 //Initialize every int var for the programm. I know this can be done much better. Feel free to correct me by making an issue on Github :)
 
 int news = 1;
-int checkupdates = 0;
+int checkupdates = 1;
 using namespace std;
 
 /*
@@ -221,11 +177,7 @@ ofstream cfgconfig;
 
 }
 
-/*
-==============================================================================================================================
-Startprogramm zum ausführen der Simulation.
-==============================================================================================================================
-*/
+
 void start()
 {
 
@@ -254,14 +206,14 @@ void start()
     NewsCheck();
     system("cls");
     cout << " ____________________________________________________ " << endl;
-    cout << "|Welcome to Veloren-server-configurator.             |" << endl;
+    cout << "|Welcome to Veloren-Server-Configurator.             |" << endl;
     cout << "|Please select what you want to do.                  |" << endl;
     cout << "|____________________________________________________|" << endl;           //Start Menü
     cout << "|                                                    |" << endl;
     cout << "|1. Start Server                                     |" << endl;
-    cout << "|2. Exit                                             |" << endl;
-    cout << "|3. Server Setup                                     |" << endl;
-    cout << "|4. Check for updates (DEV BRANCH)                   |" << endl;
+    cout << "|2. Server Setup                                     |" << endl;
+    cout << "|3. Check for updates (DEV BRANCH)                   |" << endl;
+    cout << "|4. Exit                                             |" << endl;
     cout << "|____________________________________________________|" << endl;
     cout << "                                                      " << endl;
     SetMyCursor(0,26);      //Text für untere Leiste
@@ -283,17 +235,17 @@ void start()
     int zahl;
     SetMyCursor(1,10);
     cin >> zahl;
-    if (zahl == 1)          //Bedingung für ausführung der Schleife 1, startet die Simulation
+    if (zahl == 1)          //Bedingung für ausführung der Schleife 1,
     {
         system("start veloren-server-cli.exe " ) ;
 
     }
-    if (zahl == 2)          //Bedingung für ausführung der Schleife 2, beendet das Programm
+    if (zahl == 4)          //Bedingung für ausführung der Schleife 2, beendet das Programm
     {
         exit(0);
     }
 
-    if (zahl == 3)          //Highscore
+    if (zahl == 2)
     {
         string defaultconfig = "test";
         string server_name;
@@ -349,7 +301,7 @@ void start()
             start();
         }
 
-    if (zahl == 4)          //Updates the program.
+    if (zahl == 3)          //Updates the program.
         checkupdates=0;
         start();
 
